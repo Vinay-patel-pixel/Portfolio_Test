@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vinay — Computer Science Engineering student and developer." />
+  <title>Vinay — Developer Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #070910;
+      --card: rgba(15, 21, 34, 0.72);
+      --text: #eef3ff;
+      --muted: #8b96aa;
+      --border: rgba(255,255,255,.09);
+      --purple: #7c5cff;
+      --cyan: #00d9ff;
+      --green: #76ffb4;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(124,92,255,.14), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(0,217,255,.09), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.light {
+      --bg: #f4f7fb;
+      --card: rgba(255,255,255,.8);
+      --text: #111827;
+      --muted: #5d687c;
+      --border: rgba(0,0,0,.1);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: rgba(124,92,255,.4);
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(calc(100% - 25px), 960px);
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid var(--border);
+      background: rgba(8,11,18,.72);
+      backdrop-filter: blur(20px);
+      border-radius: 18px;
+    }
+
+    body.light .nav {
+      background: rgba(255,255,255,.75);
+    }
+
+    .logo {
+      font-family: "Space Grotesk";
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 5px;
+    }
+
+    .nav-links a {
+      padding: 9px 13px;
+      color: var(--muted);
+      border-radius: 10px;
+      font-size: .85rem;
+      transition: .25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(255,255,255,.07);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .icon-btn {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--purple);
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: auto;
+    }
+
+    section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+      border-radius: 22px;
+    }
+
+    .kicker {
+      color: var(--cyan);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.05;
+    }
+
+    h2 {
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      letter-spacing: -.06em;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 38px;
+    }
+
+    .section-desc {
+      max-width: 490px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 130px;
+      overflow: hidden;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      width: 480px;
+      height: 480px;
+      left: -12%;
+      top: 5%;
+      background: radial-gradient(circle, rgba(124,92,255,.18), transparent 68%);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-two {
+      width: 420px;
+      height: 420px;
+      right: -8%;
+      top: 25%;
+      background: radial-gradient(circle, rgba(0,217,255,.12), transparent 68%);
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translate(25px,-20px) scale(1.05);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 11px;
+      border: 1px solid rgba(118,255,180,.2);
+      background: rgba(118,255,180,.06);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(118,255,180,.08);
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 8vw, 7.4rem);
+      letter-spacing: -.075em;
+    }
+
+    .gradient {
+      background: linear-gradient(
+        100deg,
+        #fff 15%,
+        #a991ff 52%,
+        #5ce7ff 90%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 27px 0 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 11px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      font-size: .9rem;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+      border: none;
+      background: linear-gradient(135deg, var(--purple), #5e8cff);
+      box-shadow: 0 12px 30px rgba(124,92,255,.25);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      text-align: center;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 35px;
+      background: linear-gradient(var(--muted), transparent);
+      display: block;
+      margin: 7px auto 0;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .about-card {
+      padding: 31px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .terminal {
+      padding: 24px;
+      background: #080b11;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      font: .82rem/1.8 monospace;
+      color: #b8c3d9;
+      overflow: hidden;
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 17px;
+    }
+
+    .dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff6b6b;
+    }
+
+    .dots i:nth-child(2) {
+      background: #ffd166;
+    }
+
+    .dots i:nth-child(3) {
+      background: #76ffb4;
+    }
+
+    .key {
+      color: #c792ea;
+    }
+
+    .string {
+      color: #a7e88f;
+    }
+
+    .fn {
+      color: #65d8ff;
+    }
+
+    .comment {
+      color: #5c6880;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      padding: 20px;
+    }
+
+    .stat strong {
+      display: block;
+      font: 700 2rem "Space Grotesk";
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .77rem;
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      color: #c9d2e6;
+      font-size: .82rem;
+      transition: .25s;
+    }
+
+    .skill:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+    }
+
+    .skill.learning {
+      color: var(--green);
+      border-color: rgba(118,255,180,.25);
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .filter {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 13px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: .78rem;
+      transition: .2s;
+    }
+
+    .filter:hover,
+    .filter.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .project {
+      padding: 20px;
+      min-height: 275px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .35s;
+      overflow: hidden;
+    }
+
+    .project:hover {
+      transform: translateY(-7px);
+      border-color: rgba(124,92,255,.4);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .project-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(124,92,255,.12);
+    }
+
+    .project-number {
+      color: #5e6b84;
+      font: .7rem monospace;
+    }
+
+    .project h3 {
+      margin: 25px 0 9px;
+      font-size: 1.25rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.055);
+      color: #9ba8c1;
+      font-size: .67rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      color: #b9c4da;
+      font-size: .76rem;
+    }
+
+    .project-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* =========================
+       JOURNEY
+    ========================= */
+
+    .timeline {
+      position: relative;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 5px;
+      bottom: 5px;
+      width: 1px;
+      background: linear-gradient(var(--purple),transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 42px;
+      margin-bottom: 34px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 2px;
+      top: 5px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--purple);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .time {
+      color: var(--cyan);
+      font-size: .72rem;
+      margin-bottom: 9px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+    }
+
+    .contact-card,
+    .contact-box {
+      padding: 34px;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 15px;
+    }
+
+    .contact-card p {
+      max-width: 470px;
+      color: var(--muted);
+    }
+
+    .email {
+      display: inline-block;
+      margin-top: 25px;
+      color: var(--cyan);
+      border-bottom: 1px dashed var(--cyan);
+    }
+
+    .availability {
+      color: var(--green);
+      font-size: .8rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    .social {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: .76rem;
+      transition: .2s;
+    }
+
+    .social:hover {
+      color: var(--text);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width:850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .nav-links.open {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+      }
+
+      .about-grid,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      nav {
+        width: calc(100% - 18px);
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      h1 {
+        font-size: clamp(3rem,17vw,5rem);
+      }
+
+      .hero-copy {
+        font-size: .95rem;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .about-card,
+      .contact-card,
+      .contact-box {
+        padding: 23px;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <nav>
+    <div class="nav">
+
+      <a href="#home" class="logo">
+        V<span>.</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeBtn">☼</button>
+        <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+      <div class="grid"></div>
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+
+      <div class="container">
+
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            <span class="pulse"></span>
+            CSE Student · Developer · Builder
+          </div>
+
+          <h1>
+            Turning curiosity into
+            <span class="gradient">code.</span>
+          </h1>
+
+          <p class="hero-copy">
+            Hi, I'm Vinay — a Computer Science Engineering student
+            exploring software development, backend systems, and
+            the art of building useful things with code.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              Explore my work ↓
+            </a>
+
+            <a href="mailto:vinaypatelvk03@gmail.com"
+               class="btn btn-secondary">
+              Let's connect ↗
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="scroll">
+        Scroll
+        <span class="scroll-line"></span>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+            <div class="kicker">01 / About</div>
+            <h2>A developer in progress.</h2>
+          </div>
+
+          <p class="section-desc">
+            I like understanding how things work, breaking problems
+            down, and turning ideas into working software.
+          </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+          <div class="glass about-card reveal">
+
+            <p>
+              I'm currently pursuing Computer Science Engineering and
+              building a broad foundation across programming languages,
+              web development, and backend engineering.
+            </p>
+
+            <p>
+              My toolkit ranges from C and C++ fundamentals to Python
+              and Java, with experience in HTML, Django, and Flask.
+              I'm also learning Rust to explore systems programming.
+            </p>
+
+            <p>
+              This portfolio is intentionally easy to edit.
+              Replace the placeholder projects, links, and journey
+              entries with your real work as you grow.
+            </p>
+
+          </div>
+
+
+          <div class="reveal">
+
+            <div class="terminal">
+
+              <div class="dots">
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+
+              <div>
+                <span class="comment">// vinay.py</span>
+              </div>
+
+              <div>
+                <span class="key">class</span>
+                <span class="fn">Developer</span>:
+              </div>
+
+              <div>
+                &nbsp;&nbsp;
+                <span class="key">def</span>
+                <span class="fn">__init__</span>(self):
+              </div>
+
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                self.name =
+                <span class="string">"Vinay"</span>
+              </div>
+
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                self.role =
+                <span class="string">"CSE Student"</span>
+              </div>
+
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                self.curious =
+                <span class="key">True</span>
+              </div>
+
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                self.learning =
+                [<span class="string">"Rust"</span>]
+              </div>
+
+              <br>
+
+              <div>
+                <span class="comment">
+                  # build → learn → repeat
+                </span>
+              </div>
+
+            </div>
+
+
+            <div class="stats">
+
+              <div class="glass stat">
+                <strong>7+</strong>
+                <span>Core technologies</span>
+              </div>
+
+              <div class="glass stat">
+                <strong>∞</strong>
+                <span>Things to learn</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+            <div class="kicker">02 / Toolkit</div>
+            <h2>Things I build with.</h2>
+          </div>
+
+          <p class="section-desc">
+            A growing toolkit — not a finished list.
+          </p>
+
+        </div>
+
+
+        <div class="glass about-card reveal">
+
+          <div class="skills">
+
+            <span class="skill">Python</span>
+            <span class="skill">Java</span>
+            <span class="skill">C</span>
+            <span class="skill">C++</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">HTML</span>
+            <span class="skill">Django</span>
+            <span class="skill">Flask</span>
+
+            <span class="skill learning">
+              Rust · Learning
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section id="projects">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+            <div class="kicker">03 / Projects</div>
+            <h2>Selected experiments.</h2>
+          </div>
+
+          <p class="section-desc">
+            Replace these starter projects with your actual
+            GitHub repositories.
+          </p>
+
+        </div>
+
+
+        <div class="filters reveal">
+
+          <button class="filter active" data-filter="all">
+            All
+          </button>
+
+          <button class="filter" data-filter="python">
+            Python
+          </button>
+
+          <button class="filter" data-filter="web">
+            Web
+          </button>
+
+          <button class="filter" data-filter="cpp">
+            C / C++
+          </button>
+
+        </div>
+
+
+        <div class="projects" id="projectGrid">
+
+          <!-- PROJECT 1 -->
+
+          <article class="project glass reveal"
+                   data-category="python">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ⌁
+                </div>
+
+                <span class="project-number">
+                  01
+                </span>
+
+              </div>
+
+              <h3>Smart Task API</h3>
+
+              <p>
+                A backend-focused task manager concept built
+                around clean APIs and database-driven workflows.
+              </p>
+
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">REST API</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+
+          <article class="project glass reveal"
+                   data-category="web">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ◈
+                </div>
+
+                <span class="project-number">
+                  02
+                </span>
+
+              </div>
+
+              <h3>Campus Connect</h3>
+
+              <p>
+                A student platform concept for sharing
+                announcements, resources, and campus events.
+              </p>
+
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Django</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 3 -->
+
+          <article class="project glass reveal"
+                   data-category="cpp">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ⌘
+                </div>
+
+                <span class="project-number">
+                  03
+                </span>
+
+              </div>
+
+              <h3>Algorithm Lab</h3>
+
+              <p>
+                Data structures and algorithms implemented
+                from scratch to strengthen problem-solving skills.
+              </p>
+
+              <div class="tags">
+                <span class="tag">C++</span>
+                <span class="tag">DSA</span>
+                <span class="tag">Algorithms</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 4 -->
+
+          <article class="project glass reveal"
+                   data-category="python">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ✦
+                </div>
+
+                <span class="project-number">
+                  04
+                </span>
+
+              </div>
+
+              <h3>Automation Toolkit</h3>
+
+              <p>
+                A collection of Python utilities for
+                automating repetitive everyday tasks.
+              </p>
+
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Automation</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 5 -->
+
+          <article class="project glass reveal"
+                   data-category="web">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ◎
+                </div>
+
+                <span class="project-number">
+                  05
+                </span>
+
+              </div>
+
+              <h3>Portfolio v2</h3>
+
+              <p>
+                An interactive personal website focused on
+                motion, responsive layouts, and developer identity.
+              </p>
+
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 6 -->
+
+          <article class="project glass reveal"
+                   data-category="cpp">
+
+            <div>
+
+              <div class="project-top">
+
+                <div class="project-icon">
+                  ⚙
+                </div>
+
+                <span class="project-number">
+                  06
+                </span>
+
+              </div>
+
+              <h3>Systems Playground</h3>
+
+              <p>
+                Experiments with lower-level concepts while
+                gradually moving from C/C++ toward Rust.
+              </p>
+
+              <div class="tags">
+                <span class="tag">C</span>
+                <span class="tag">C++</span>
+                <span class="tag">Rust</span>
+              </div>
+
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/"
+                 target="_blank">
+                GitHub ↗
+              </a>
+
+              <a href="#contact">
+                Details →
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JOURNEY
+    ========================== -->
+
+    <section id="journey">
+
+      <div class="container">
+
+        <div class="section-head reveal">
+
+          <div>
+            <div class="kicker">04 / Journey</div>
+            <h2>Currently becoming.</h2>
+          </div>
+
+          <p class="section-desc">
+            Keep this section updated as your degree,
+            projects, and experience grow.
+          </p>
+
+        </div>
+
+
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <h3>
+              Computer Science Engineering
+            </h3>
+
+            <div class="time">
+              CURRENT · UNIVERSITY
+            </div>
+
+            <p>
+              Building fundamentals in programming,
+              software engineering, data structures,
+              computer systems, and problem solving.
+            </p>
+
+          </div>
+
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <h3>
+              Web & Backend Development
+            </h3>
+
+            <div class="time">
+              EXPLORING
+            </div>
+
+            <p>
+              Working with Python, Django, Flask,
+              HTML, and JavaScript to understand how
+              real applications are designed and shipped.
+            </p>
+
+          </div>
+
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <h3>
+              Rust
+            </h3>
+
+            <div class="time">
+              LEARNING NOW
+            </div>
+
+            <p>
+              Exploring Rust and systems programming to
+              understand performance, memory safety,
+              and lower-level software.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="contact glass reveal">
+
+          <div class="contact-card">
+
+            <div class="kicker">
+              05 / Contact
+            </div>
+
+            <h2>
+              Let's build something.
+            </h2>
+
+            <p>
+              Have an idea, project, internship opportunity,
+              or just want to talk tech? My inbox is open.
+            </p>
+
+            <a
+              class="email"
+              href="mailto:vinaypatelvk03@gmail.com"
+            >
+              vinaypatelvk03@gmail.com ↗
+            </a>
+
+          </div>
+
+
+          <div class="contact-box">
+
+            <div class="availability">
+              ● Open to opportunities
+            </div>
+
+            <div>
+
+              <div class="kicker">
+                Find me online
+              </div>
+
+              <div class="socials">
+
+                <!-- CHANGE THESE LINKS -->
+
+                <a
+                  class="social"
+                  href="https://github.com/"
+                  target="_blank"
+                >
+                  GitHub ↗
+                </a>
+
+                <a
+                  class="social"
+                  href="https://linkedin.com/"
+                  target="_blank"
+                >
+                  LinkedIn ↗
+                </a>
+
+                <a
+                  class="social"
+                  href="mailto:vinaypatelvk03@gmail.com"
+                >
+                  Email ↗
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container footer">
+
+      <span>
+        © <span id="year"></span> Vinay.
+        Built with curiosity & code.
+      </span>
+
+      
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       DARK / LIGHT MODE
+    ========================== */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    const savedTheme =
+      localStorage.getItem("vinay-theme");
+
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+      themeBtn.textContent = "☾";
+    }
+
+    themeBtn.addEventListener("click", () => {
+
+      document.body.classList.toggle("light");
+
+      const isLight =
+        document.body.classList.contains("light");
+
+      localStorage.setItem(
+        "vinay-theme",
+        isLight ? "light" : "dark"
+      );
+
+      themeBtn.textContent =
+        isLight ? "☾" : "☼";
+
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+
+      navLinks.classList.toggle("open");
+
+    });
+
+    document.querySelectorAll(".nav-links a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+        });
+
+      });
+
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================== */
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .12
+        }
+      );
+
+
+    document.querySelectorAll(".reveal")
+      .forEach(element => {
+
+        observer.observe(element);
+
+      });
+
+
+    /* =========================
+       PROJECT FILTER
+    ========================== */
+
+    const filters =
+      document.querySelectorAll(".filter");
+
+    const projects =
+      document.querySelectorAll(".project");
+
+
+    filters.forEach(filter => {
+
+      filter.addEventListener("click", () => {
+
+        filters.forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+        filter.classList.add("active");
+
+        const category =
+          filter.dataset.filter;
+
+        projects.forEach(project => {
+
+          if (
+            category === "all" ||
+            project.dataset.category === category
+          ) {
+
+            project.style.display = "flex";
+
+          } else {
+
+            project.style.display = "none";
+
+          }
+
+        });
+
+      });
+
+    });
+
+
+    /* =========================
+       ACTIVE NAVIGATION
+    ========================== */
+
+    const sections =
+      document.querySelectorAll("main section");
+
+    const navItems =
+      document.querySelectorAll(".nav-links a");
+
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach(section => {
+
+        const sectionTop =
+          section.offsetTop - 180;
+
+        if (window.scrollY >= sectionTop) {
+          current = section.id;
+        }
+
+      });
+
+      navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        if (
+          item.getAttribute("href") ===
+          "#" + current
+        ) {
+          item.classList.add("active");
+        }
+
+      });
+
+    });
+
+
+    /* =========================
+       3D PROJECT HOVER
+    ========================== */
+
+    if (
+      window.matchMedia("(pointer:fine)").matches
+    ) {
+
+      document
+        .querySelectorAll(".project")
+        .forEach(card => {
+
+          card.addEventListener(
+            "mousemove",
+            event => {
+
+              const rect =
+                card.getBoundingClientRect();
+
+              const x =
+                (event.clientX - rect.left)
+                / rect.width - .5;
+
+              const y =
+                (event.clientY - rect.top)
+                / rect.height - .5;
+
+              card.style.transform =
+                `perspective(900px)
+                 rotateX(${y * -3}deg)
+                 rotateY(${x * 3}deg)
+                 translateY(-5px)`;
+
+            }
+          );
+
+          card.addEventListener(
+            "mouseleave",
+            () => {
+
+              card.style.transform = "";
+
+            }
+          );
+
+        });
+
+    }
+
+
+    /* =========================
+       YEAR
+    ========================== */
+
+    document.getElementById("year")
+      .textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
